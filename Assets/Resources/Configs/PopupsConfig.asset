@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abc7952063b945c69b451c371714a863, type: 3}
+  m_Name: PopupsConfig
+  m_EditorClassIdentifier: 
+  ShowTransitionDuration: 0.35
+  HideTransitionDuration: 0.15
+  TransitionEase: 1
+  Popups:
+  - Name: ConfirmationPopup
+    PopupPrefab: {fileID: 3032589485488114594, guid: 9d16282a665e39e4fb9f1f47d0b1933a, type: 3}
+  - Name: PromotionPopup
+    PopupPrefab: {fileID: 205596884640779829, guid: 22e7a0d2e90c586479ff8c10a4663e96, type: 3}
+  - Name: LevelFinishedPopup
+    PopupPrefab: {fileID: 995281405029164545, guid: 562da553bcd053545b9d1fe62c66bcbe, type: 3}

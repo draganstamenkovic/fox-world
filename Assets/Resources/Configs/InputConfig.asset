@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c3fc7b90d3e4900b1009318cdcf0b8e, type: 3}
+  m_Name: InputConfig
+  m_EditorClassIdentifier: 
+  joystickPrefab: {fileID: 3881087803549984436, guid: ec536a7718376554185e4a856d5ae230, type: 3}
+  fireButtonPrefab: {fileID: 2537159672811983191, guid: ec6611e22ca50ad43a967d607f1376da, type: 3}
+  joystickSensitivity: 0

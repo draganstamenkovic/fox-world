@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 522d997bac5206b4da3961261a0817ce, type: 3}
+  m_Name: GuiScreensConfig
+  m_EditorClassIdentifier: 
+  Forward: {x: 3000, y: 0}
+  Backward: {x: -3000, y: 0}
+  TransitionDuration: 0.15
+  TransitionEase: 1
+  Screens:
+  - Name: MainMenuScreen
+    Screen: {fileID: 5379366034730027136, guid: 11a6943f2bb4abd4db474512037ab5c1, type: 3}
+  - Name: LoadingScreen
+    Screen: {fileID: 4562900712143744073, guid: e7d12292d6ec2144e9e4e9b25468dce7, type: 3}
+  - Name: PlayScreen
+    Screen: {fileID: 3185332468236236503, guid: 88fd35f324af95840926a17e64153fb3, type: 3}
+  - Name: SettingsScreen
+    Screen: {fileID: 4445446548013345449, guid: 01af05cce48709448809be1340bce41b, type: 3}
