@@ -19,7 +19,9 @@ MonoBehaviour:
   jumpBufferTime: 0.1
   coyoteTime: 0.1
   jumpCutMultiplier: 0.5
+  defaultGravity: 8
+  afterJumpGravity: 12
   groundCheckRadius: 0.2
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8

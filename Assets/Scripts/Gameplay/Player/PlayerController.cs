@@ -22,7 +22,7 @@ namespace Gameplay.Player
         private bool _isJumping;
         private bool _isIdle;
         
-        private float _lastGroundedTime;
+       // private float _lastGroundedTime;
         
         public PlayerController(IObjectResolver objectResolver)
         {
@@ -40,11 +40,13 @@ namespace Gameplay.Player
         }
         private void OnCollisionEnter(Collision2D collision)
         {
+            /*
             if (collision.gameObject.tag.Equals("Ground"))
             {
                 _isGrounded = true;
                 _isJumping = false;
             }
+            */
         }
         public void Idle()
         {
@@ -65,7 +67,7 @@ namespace Gameplay.Player
         {
             if (!_isGrounded) return;
             
-            _isGrounded = false;
+            //_isGrounded = false;
             _isJumping = true;
             _playerView.animator.SetBool("Idle", true);
 
@@ -88,9 +90,23 @@ namespace Gameplay.Player
                 _playerView.transform.localPosition = _startPosition;
             }
         }
+        
+        private void CheckGrounded()
+        {
+            _isGrounded = Physics2D.OverlapCircle(_playerView.groundCheck.position, 
+                                                        _playerConfig.groundCheckRadius,
+                                                     _playerConfig.groundLayer);
+        
+            if (_isGrounded)
+            {
+                //_lastGroundedTime = _playerConfig.coyoteTime;
+                _isJumping = false;
+            }
+        }
 
         private void Update()
         {
+            CheckGrounded();
             if (_isJumping && _playerView.rigidBody.linearVelocityY <= 0)
             {
                 _playerView.rigidBody.gravityScale = _playerConfig.afterJumpGravity;
