@@ -13,10 +13,10 @@ namespace Configs
         
         [Header("Movement Settings")]
         public float moveSpeed = 5f;
-        public float jumpForce = 10f;
         public float airControlFactor = 0.8f;
         
         [Header("Jump Settings")]
+        public float jumpForce = 10f;
         public float jumpBufferTime = 0.1f;
         public float coyoteTime = 0.1f;
         public float jumpCutMultiplier = 0.5f;

@@ -1,6 +1,7 @@
 using Audio.Managers;
 using Cameras;
 using Configs;
+using DefaultNamespace;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -15,7 +16,7 @@ namespace Gameplay.Player
         private readonly IObjectResolver _objectResolver;
 
         private PlayerView _playerView;
-        public ParticleSystem _jumpParticle;
+        private ParticleSystem _landParticle;
         
         private Vector3 _startPosition;
         
@@ -24,7 +25,7 @@ namespace Gameplay.Player
         private bool _isIdle;
 
         private bool _jumpParticlePlayed;
-       // private float _lastGroundedTime;
+        private float _lastParticleTime;
         
         public PlayerController(IObjectResolver objectResolver)
         {
@@ -38,30 +39,42 @@ namespace Gameplay.Player
             _playerView = player.GetComponent<PlayerView>();
 
             _playerView.rigidBody.gravityScale = _playerConfig.defaultGravity;
-            _jumpParticle = _objectResolver.Instantiate(_playerConfig.onLandParticle).GetComponent<ParticleSystem>();
+            _landParticle = _objectResolver.Instantiate(_playerConfig.onLandParticle).GetComponent<ParticleSystem>();
         }
         public void Idle()
         {
-            if (_isIdle) return;
+            if (_isIdle || _isJumping) return;
 
             _isIdle = true;
-            _playerView.animator.SetBool("Running", false);
+            _playerView.animator.SetBool(AnimationIds.Run, false);
+            _playerView.animator.SetBool(AnimationIds.Jump, false);
+            _playerView.animator.SetBool(AnimationIds.Idle, true);
         }
         public void Move(float xValue)
         {
             _isIdle = false;
+            _playerView.spriteRenderer.flipX = !(xValue > 0);
+            
             var velocity = new Vector2(xValue * _playerConfig.moveSpeed, _playerView.rigidBody.linearVelocity.y);
             _playerView.rigidBody.linearVelocity = velocity;
-            _playerView.animator.SetBool("Running", true);
+            
+            if (_isJumping) return;
+            
+            _playerView.animator.SetBool(AnimationIds.Run, true);
+            _playerView.animator.SetBool(AnimationIds.Jump, false);
+            _playerView.animator.SetBool(AnimationIds.Idle, false);
         }
 
         public void Jump()
         {
             if (!_isGrounded) return;
             
-            //_isGrounded = false;
+            _playerView.animator.SetBool(AnimationIds.Jump, true);
+            _playerView.animator.SetBool(AnimationIds.Run, false);
+            _playerView.animator.SetBool(AnimationIds.Idle, false);
+            
+            _isGrounded = false;
             _isJumping = true;
-            _playerView.animator.SetBool("Idle", true);
 
             _playerView.rigidBody.AddForce(new Vector2(0, _playerConfig.jumpForce), ForceMode2D.Force);
         }
@@ -85,19 +98,23 @@ namespace Gameplay.Player
         
         private void CheckGrounded()
         {
+            bool wasGrounded = _isGrounded;
             _isGrounded = Physics2D.OverlapCircle(_playerView.groundCheck.position, 
-                                                        _playerConfig.groundCheckRadius,
-                                                     _playerConfig.groundLayer);
+                _playerConfig.groundCheckRadius,
+                _playerConfig.groundLayer);
         
-            if (_isGrounded)
+            // Just landed
+            if (_isGrounded && !wasGrounded)
             {
-                //_lastGroundedTime = _playerConfig.coyoteTime;
                 _isJumping = false;
-                if (_playerView.rigidBody.linearVelocityY == 0 && !_jumpParticlePlayed)
+                
+                if (Time.time > _lastParticleTime + 0.2f)
                 {
-                    _jumpParticle.transform.position = _playerView.dustParticleTransform.position;
-                    _jumpParticle.Play();
-                    _jumpParticlePlayed = true;
+                    _playerView.animator.SetBool(AnimationIds.Jump, false);
+                    _playerView.animator.SetBool(AnimationIds.Idle, true);
+                    _landParticle.transform.position = _playerView.dustParticleTransform.position;
+                    _landParticle.Play();
+                    _lastParticleTime = Time.time;
                 }
             }
         }
@@ -105,12 +122,11 @@ namespace Gameplay.Player
         private void Update()
         {
             CheckGrounded();
+    
             if (_isJumping && _playerView.rigidBody.linearVelocityY <= 0)
             {
                 _playerView.rigidBody.gravityScale = _playerConfig.afterJumpGravity;
-                _jumpParticlePlayed = false;
             }
-            
             else if(!_isJumping)
             {
                 _playerView.rigidBody.gravityScale = _playerConfig.defaultGravity;
