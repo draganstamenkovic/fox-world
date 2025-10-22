@@ -109,8 +109,6 @@ namespace Gameplay
             leftBound.transform.localPosition = new Vector3(-camera.orthographicSize * 2 - boundsSize / 2, 10f - camera.orthographicSize, 0);
             leftBound.AddComponent<BoxCollider2D>();
         }
-        
-        
 
         private void Cleanup()
         {
