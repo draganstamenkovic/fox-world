@@ -100,13 +100,17 @@ namespace Gameplay
             bounds.transform.SetParent(_gameplayParent);
             
             var camera = _cameraManager.GetMainCamera();
+
+            var boundsSize = 0.1f;
             
-            var topBound = new GameObject("Top");
-            topBound.transform.SetParent(bounds.transform);
-            topBound.transform.localScale = new Vector3(10, 0.1f, 0.1f);
-            topBound.transform.position = new Vector3(0, camera.orthographicSize + 1, 0);
-            topBound.AddComponent<BoxCollider2D>();
+            var leftBound = new GameObject("LeftBound");
+            leftBound.transform.SetParent(bounds.transform);
+            leftBound.transform.localScale = new Vector3(boundsSize, 20f, boundsSize);
+            leftBound.transform.localPosition = new Vector3(-camera.orthographicSize * 2 - boundsSize / 2, 10f - camera.orthographicSize, 0);
+            leftBound.AddComponent<BoxCollider2D>();
         }
+        
+        
 
         private void Cleanup()
         {
