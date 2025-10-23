@@ -1,6 +1,7 @@
 using System;
 using Cameras;
 using Data.Load;
+using Gameplay.Background;
 using Gameplay.Level;
 using Gameplay.Player;
 using Input;
@@ -48,7 +49,6 @@ namespace Gameplay
 
         public void Play()
         {
-            Debug.Log("Play Game Message");
             _playerController.SetActive(true);
             _inputManager.SetActive(true);
         }
