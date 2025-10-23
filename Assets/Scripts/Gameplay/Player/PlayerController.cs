@@ -53,7 +53,7 @@ namespace Gameplay.Player
         public void Move(float xValue)
         {
             _isIdle = false;
-            _playerView.spriteRenderer.flipX = !(xValue > 0);
+            _playerView.transform.localScale = xValue > 0 ? new  Vector3(1,1,1) : new Vector3(-1, 1, 1);
             
             var velocity = new Vector2(xValue * _playerConfig.moveSpeed, _playerView.rigidBody.linearVelocity.y);
             _playerView.rigidBody.linearVelocity = velocity;
