@@ -9,5 +9,6 @@ namespace Gameplay.Player
         void Move(float xValue);
         void Jump();
         void SetActive(bool active);
+        Transform GetTransform();
     }
 }

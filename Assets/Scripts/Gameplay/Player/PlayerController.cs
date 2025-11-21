@@ -11,7 +11,6 @@ namespace Gameplay.Player
     public class PlayerController : IPlayerController
     {
         [Inject] private PlayerConfig _playerConfig;
-        [Inject] private ICameraManager _cameraManager;
         [Inject] private IAudioManager _audioManager;
         private readonly IObjectResolver _objectResolver;
 
@@ -132,5 +131,7 @@ namespace Gameplay.Player
                 _playerView.rigidBody.gravityScale = _playerConfig.defaultGravity;
             }
         }
+        
+        public Transform GetTransform() => _playerView.transform;
     }
 }
