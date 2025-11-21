@@ -12,8 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1975401e62754186966c16b0246bbb82, type: 3}
   m_Name: EnemiesConfig
   m_EditorClassIdentifier: Assembly-CSharp::Configs.EnemiesConfig
+  vultureMoveDuration: 2
   Enemies: []
-  GridCellSize: 1
-  CellHeight: 10
-  CellWidth: 10
-  GridPositionOffset: 0.5

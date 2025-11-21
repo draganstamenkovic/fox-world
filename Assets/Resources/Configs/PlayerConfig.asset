@@ -22,8 +22,7 @@ MonoBehaviour:
   jumpCutMultiplier: 0.5
   defaultGravity: 8
   afterJumpGravity: 16
-  groundCheckRadius: 0.2
+  groundCheckRadius: 0.1
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  topCheckRadius: 1.5
