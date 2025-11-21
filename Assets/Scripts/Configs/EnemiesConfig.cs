@@ -7,13 +7,10 @@ namespace Configs
     [CreateAssetMenu(fileName = "EnemiesConfig", menuName = "Configs/EnemiesConfig")]
     public class EnemiesConfig : ScriptableObject
     {
+        [Header("Vulture")]
+        public float vultureMoveDuration;
         public List<EnemyData> Enemies;
 
-        [Header("Grid settings")] 
-        public float GridCellSize = 1f;
-        public int CellHeight = 10;
-        public int CellWidth = 10;
-        public float GridPositionOffset = 0.5f;
         public EnemyData GetEnemy(string id)
         {
             var enemy = Enemies.Find(e => e.Id == id);

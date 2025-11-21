@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 5878498200296189007}
   m_Layer: 0
   m_Name: VultureParent
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -229,8 +229,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Vulture
   animator: {fileID: 6914609945511798052}
+  vultureTransform: {fileID: 4812854068556833348}
   startPointTransform: {fileID: 1980237182631225678}
   endPointTransform: {fileID: 9018430539013827448}
+  enemiesConfig: {fileID: 11400000, guid: edc57c6924160be4b80898232fa1d4e7, type: 2}
 --- !u!1 &7373654430814819912
 GameObject:
   m_ObjectHideFlags: 0
