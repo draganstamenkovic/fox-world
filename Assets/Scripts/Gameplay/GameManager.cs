@@ -35,7 +35,6 @@ namespace Gameplay
             _loadManager.Initialize();
             _inputManager.Initialize(_playerController);
             _levelManager.Initialize();
-            CreateGameBounds();
             SubscribeToEvents();
         }
 
@@ -92,26 +91,6 @@ namespace Gameplay
         {
             var gameplayObj = new GameObject("_Gameplay_");
             _gameplayParent = gameplayObj.transform;
-        }
-
-        private void CreateGameBounds()
-        {
-            var bounds = new GameObject("Bounds");
-            bounds.transform.SetParent(_gameplayParent);
-            
-            var camera = _cameraManager.GetMainCamera();
-
-            var boundsSize = 0.1f;
-            
-            var distance = -camera.transform.position.z;
-
-            var leftPos = camera.ViewportToWorldPoint(new Vector3(0f, 0.5f, distance));
-            
-            var leftBound = new GameObject("LeftBound");
-            leftBound.transform.SetParent(bounds.transform);
-            leftBound.transform.localScale = new Vector3(boundsSize, 20f, boundsSize);
-            leftBound.transform.localPosition = leftPos;
-            leftBound.AddComponent<BoxCollider2D>();
         }
 
         private void Cleanup()
