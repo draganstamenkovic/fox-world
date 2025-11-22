@@ -4,9 +4,9 @@ using DG.Tweening;
 
 namespace Gameplay.Enemies
 {
-    public class Vulture : MonoBehaviour
+    public class Vulture : Enemy
     {
-        [SerializeField] private Animator animator;
+        
         [SerializeField] private Transform vultureTransform;
         [SerializeField] private Transform startPointTransform;
         [SerializeField] private Transform endPointTransform;

@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 1746736082078296527}
   - component: {fileID: 6914609945511798052}
   - component: {fileID: 5759032269278528885}
+  - component: {fileID: 7773689296024659057}
   m_Layer: 0
   m_Name: Vulture
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,6 +151,24 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: -0.22760564}
   m_Radius: 0.8023984
+--- !u!114 &7773689296024659057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 54074279143993964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9e3043a16919d54a9bf93c51b560967, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Vulture
+  animator: {fileID: 6914609945511798052}
+  circleCollider: {fileID: 5759032269278528885}
+  vultureTransform: {fileID: 4812854068556833348}
+  startPointTransform: {fileID: 1980237182631225678}
+  endPointTransform: {fileID: 9018430539013827448}
+  enemiesConfig: {fileID: 11400000, guid: edc57c6924160be4b80898232fa1d4e7, type: 2}
 --- !u!1 &1445050432222649577
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,10 +209,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5012104363775387124}
-  - component: {fileID: 5878498200296189007}
   m_Layer: 0
   m_Name: VultureParent
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -216,23 +234,6 @@ Transform:
   - {fileID: 9018430539013827448}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5878498200296189007
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7202615005988432379}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9e3043a16919d54a9bf93c51b560967, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Vulture
-  animator: {fileID: 6914609945511798052}
-  vultureTransform: {fileID: 4812854068556833348}
-  startPointTransform: {fileID: 1980237182631225678}
-  endPointTransform: {fileID: 9018430539013827448}
-  enemiesConfig: {fileID: 11400000, guid: edc57c6924160be4b80898232fa1d4e7, type: 2}
 --- !u!1 &7373654430814819912
 GameObject:
   m_ObjectHideFlags: 0
