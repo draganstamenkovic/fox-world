@@ -9,6 +9,7 @@ namespace Configs
     {
         [Header("Vulture")]
         public float vultureMoveDuration;
+
         public List<EnemyData> Enemies;
 
         public EnemyData GetEnemy(string id)

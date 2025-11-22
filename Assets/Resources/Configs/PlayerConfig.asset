@@ -15,11 +15,8 @@ MonoBehaviour:
   playerPrefab: {fileID: 6261274542559814390, guid: 4daedd419dd9fcb40883b202ef5185ec, type: 3}
   onLandParticle: {fileID: 274031568669753798, guid: dc8f6fe0c82623e40844fc3c93449e96, type: 3}
   moveSpeed: 7.5
-  airControlFactor: 0.8
-  jumpForce: 3000
+  jumpForce: 3500
   jumpBufferTime: 0.1
-  coyoteTime: 0.1
-  jumpCutMultiplier: 0.5
   defaultGravity: 8
   afterJumpGravity: 16
   groundCheckRadius: 0.1
