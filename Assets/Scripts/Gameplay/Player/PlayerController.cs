@@ -1,7 +1,6 @@
 using Audio.Managers;
-using Cameras;
 using Configs;
-using DefaultNamespace;
+using Gameplay.Enemies;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -30,7 +29,8 @@ namespace Gameplay.Player
         {
             _objectResolver = objectResolver;
         }
-        
+        public Transform GetTransform() => _playerView.transform;
+
         public void Initialize(Transform gameplayParent)
         {
             var player = _objectResolver.Instantiate(_playerConfig.playerPrefab, gameplayParent);
@@ -51,11 +51,18 @@ namespace Gameplay.Player
         }
         public void Move(float xValue)
         {
+            
             _isIdle = false;
             _playerView.transform.localScale = xValue > 0 ? new  Vector3(1,1,1) : new Vector3(-1, 1, 1);
             
-            var velocity = new Vector2(xValue * _playerConfig.moveSpeed, _playerView.rigidBody.linearVelocity.y);
-            _playerView.rigidBody.linearVelocity = velocity;
+            var rb = _playerView.rigidBody;
+            var v = rb.linearVelocity;
+
+            v.x = xValue * _playerConfig.moveSpeed;
+
+            rb.linearVelocity = v;  
+      //      var velocity = new Vector2(xValue * _playerConfig.moveSpeed, _playerView.rigidBody.linearVelocity.y);
+       //     _playerView.rigidBody.linearVelocity = velocity;
             
             if (_isJumping) return;
             
@@ -84,11 +91,13 @@ namespace Gameplay.Player
             if (active)
             {
                 _playerView.OnUpdate = Update;
+                _playerView.OnCollisionEnter = OnCollisionEnter2D;
                 _playerView.rigidBody.bodyType = RigidbodyType2D.Dynamic;
             }
             else
             {
                 _playerView.OnUpdate = null;
+                _playerView.OnCollisionEnter = null;
                 _playerView.rigidBody.bodyType = RigidbodyType2D.Kinematic;
                 _playerView.rigidBody.linearVelocity = Vector2.zero;
                 _playerView.transform.localPosition = _startPosition;
@@ -121,17 +130,37 @@ namespace Gameplay.Player
         {
             CheckGrounded();
 
-            if (_isJumping)
-            {
-                if (_playerView.rigidBody.linearVelocityY <= 0)
-                    _playerView.rigidBody.gravityScale = _playerConfig.afterJumpGravity;
-            }
+            if (_playerView.rigidBody.linearVelocityY <= 0)
+                _playerView.rigidBody.gravityScale = _playerConfig.afterJumpGravity;
             else
             {
                 _playerView.rigidBody.gravityScale = _playerConfig.defaultGravity;
             }
         }
-        
-        public Transform GetTransform() => _playerView.transform;
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (!collision.collider.CompareTag(TagIds.Enemy))
+                return;
+
+            var contact = collision.GetContact(0);
+            var normal = contact.normal;
+            
+            if (normal.y > _playerConfig.topHitThreshold)
+            {
+                collision.gameObject.GetComponent<Enemy>().Die();
+
+                _playerView.rigidBody.linearVelocity = new Vector2(_playerView.rigidBody.linearVelocity.x, _playerConfig.jumpForceOnKill);
+            }
+            else
+            {
+                Die();
+            }
+        }
+
+        private void Die()
+        {
+            
+        }
     }
 }
