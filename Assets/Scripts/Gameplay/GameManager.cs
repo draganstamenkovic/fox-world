@@ -29,7 +29,6 @@ namespace Gameplay
         
         public void Initialize()
         {
-            CreateGameplayParent();
             _playerController.Initialize(_gameplayParent);
             _cameraManager.Initialize(_playerController.GetTransform());
             _loadManager.Initialize();
@@ -86,11 +85,6 @@ namespace Gameplay
 #elif UNITY_ANDROID || UNITY_IOS
             Application.Quit();
 #endif
-        }
-        private void CreateGameplayParent()
-        {
-            var gameplayObj = new GameObject("_Gameplay_");
-            _gameplayParent = gameplayObj.transform;
         }
 
         private void Cleanup()
