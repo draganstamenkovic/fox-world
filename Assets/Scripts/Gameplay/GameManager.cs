@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Cameras;
 using Data.Load;
 using Gameplay.Background;
@@ -22,7 +23,7 @@ namespace Gameplay
         [Inject] private readonly ILevelManager _levelManager;
 
         [Inject] private readonly IMessageBroker _messageBroker;
-        private IDisposable _disposableMessage;
+        private List<IDisposable> _disposableMessages = new();
         
         private Transform _gameplayParent;
         private bool _isPaused;
@@ -39,10 +40,15 @@ namespace Gameplay
 
         private void SubscribeToEvents()
         {
-            _disposableMessage = _messageBroker.Receive<PlayGameMessage>().Subscribe(message =>
+            _disposableMessages.Add(_messageBroker.Receive<PlayGameMessage>().Subscribe(message =>
             {
                 Play();
-            });
+            }));
+            _disposableMessages.Add(_messageBroker.Receive<PauseGameMessage>().Subscribe(message =>
+            {
+                Debug.Log("Pause");
+               // Pause();
+            }));
         }
 
         public void Play()
@@ -89,7 +95,7 @@ namespace Gameplay
 
         private void Cleanup()
         {
-            _disposableMessage?.Dispose();
+            foreach (var disposable in _disposableMessages) disposable.Dispose();
         }
     }
 }
