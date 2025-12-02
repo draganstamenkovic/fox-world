@@ -16,10 +16,12 @@ MonoBehaviour:
   onLandParticle: {fileID: 274031568669753798, guid: dc8f6fe0c82623e40844fc3c93449e96, type: 3}
   moveSpeed: 7.5
   jumpForce: 3500
+  jumpForceOnKill: 20
   jumpBufferTime: 0.1
   defaultGravity: 8
   afterJumpGravity: 16
-  groundCheckRadius: 0.1
+  groundCheckRadius: 0.15
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  topHitThreshold: 0.5
