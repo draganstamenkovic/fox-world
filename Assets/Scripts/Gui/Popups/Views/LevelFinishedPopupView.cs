@@ -5,11 +5,8 @@ namespace Gui.Popups.Views
 {
     public class LevelFinishedPopupView : PopupView
     {
-        [SerializeField] private Button _continueButton;
-        [SerializeField] private Button _quitButton;
-        
-        public Button ContinueButton => _continueButton;
-        public Button QuitButton => _quitButton;
+        public Button continueButton;
+        public Button quitButton;
         public override void Initialize()
         {
             base.Initialize();

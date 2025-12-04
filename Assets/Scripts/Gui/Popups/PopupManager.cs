@@ -41,11 +41,11 @@ namespace Gui.Popups
                 ShowPopupScreen(message.Id);
             });
             
-            foreach (var popup in _popupConfig.Popups)
+            foreach (var popup in _popupConfig.popups)
             {
-                if (!_popups.ContainsKey(popup.Name))
+                if (!_popups.ContainsKey(popup.name))
                 {
-                    _popups.Add(popup.Name, popup.PopupPrefab);
+                    _popups.Add(popup.name, popup.popupPrefab);
                 }
             }
         }

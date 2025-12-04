@@ -12,9 +12,8 @@ namespace Gui.Popups.Views
     {
         [Inject] private PopupsConfig _popupsConfig;
         
-        [SerializeField] private CanvasGroup _canvasGroup;
-        [SerializeField] private Button _backgroundButton;
-        public Button BackgroundButton => _backgroundButton;
+        public CanvasGroup canvasGroup;
+        public Button backgroundButton;
         public string ID { get; set; }
         public Action OnShow { get; set; }
         public Action OnShown { get; set; }
@@ -23,15 +22,15 @@ namespace Gui.Popups.Views
 
         public virtual void Initialize()
         {
-            _canvasGroup.alpha = 0;
+            canvasGroup.alpha = 0;
         }
 
         public virtual void Show(Action onComplete = null)
         {
             OnShow?.Invoke();
             gameObject.SetActive(true);
-            _canvasGroup.DOFade(1f, _popupsConfig.ShowTransitionDuration)
-                .SetEase(_popupsConfig.TransitionEase).OnComplete(() =>
+            canvasGroup.DOFade(1f, _popupsConfig.showTransitionDuration)
+                .SetEase(_popupsConfig.transitionEase).OnComplete(() =>
                 {
                     OnShown?.Invoke();
                     onComplete?.Invoke();
@@ -41,8 +40,8 @@ namespace Gui.Popups.Views
         public virtual void Hide(Action onComplete = null)
         {
             OnHide?.Invoke();
-            _canvasGroup.DOFade(0f, _popupsConfig.HideTransitionDuration)
-                .SetEase(_popupsConfig.TransitionEase).OnComplete(() =>
+            canvasGroup.DOFade(0f, _popupsConfig.hideTransitionDuration)
+                .SetEase(_popupsConfig.transitionEase).OnComplete(() =>
                 {
                     gameObject.SetActive(false);
                     OnHidden?.Invoke();

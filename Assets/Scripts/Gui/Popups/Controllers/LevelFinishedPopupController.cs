@@ -29,8 +29,8 @@ namespace Gui.Popups.Controllers
 
         private void RegisterListeners()
         {
-            _view.QuitButton.onClick.AddListener(OnQuitButtonClicked);
-            _view.ContinueButton.onClick.AddListener(OnContinueButtonClicked);
+            _view.quitButton.onClick.AddListener(OnQuitButtonClicked);
+            _view.continueButton.onClick.AddListener(OnContinueButtonClicked);
         }
 
         private void OnContinueButtonClicked()
@@ -47,8 +47,8 @@ namespace Gui.Popups.Controllers
 
         private void RemoveListeners()
         {
-            _view.QuitButton.onClick.RemoveListener(OnQuitButtonClicked);
-            _view.ContinueButton.onClick.RemoveListener(OnContinueButtonClicked);
+            _view.quitButton.onClick.RemoveListener(OnQuitButtonClicked);
+            _view.continueButton.onClick.RemoveListener(OnContinueButtonClicked);
         }
     }
 }
