@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abc7952063b945c69b451c371714a863, type: 3}
   m_Name: PopupsConfig
   m_EditorClassIdentifier: 
-  showTransitionDuration: 0.35
-  hideTransitionDuration: 0.15
+  showTransitionDuration: 0
+  hideTransitionDuration: 0
   transitionEase: 27
   popups:
   - name: PauseMenuPopup
