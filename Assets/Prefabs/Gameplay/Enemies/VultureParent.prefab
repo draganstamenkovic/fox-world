@@ -164,11 +164,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Vulture
   animator: {fileID: 6914609945511798052}
-  circleCollider: {fileID: 5759032269278528885}
-  vultureTransform: {fileID: 4812854068556833348}
+  enemyCollider: {fileID: 5759032269278528885}
+  enemyTransform: {fileID: 4812854068556833348}
   startPointTransform: {fileID: 1980237182631225678}
   endPointTransform: {fileID: 9018430539013827448}
-  enemiesConfig: {fileID: 11400000, guid: edc57c6924160be4b80898232fa1d4e7, type: 2}
+  enemyMoveDuration: 2
 --- !u!1 &1445050432222649577
 GameObject:
   m_ObjectHideFlags: 0
