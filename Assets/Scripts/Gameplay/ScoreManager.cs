@@ -1,7 +1,5 @@
 using System;
 using Message;
-using Message.Messages;
-using R3;
 using VContainer;
 
 namespace Gameplay
@@ -12,17 +10,6 @@ namespace Gameplay
         private IDisposable _collectedItemSubscription;
         private int _cherryCount;
         private int _gemCount;
-        
-        public void Initialize()
-        {
-            _collectedItemSubscription = _messageBroker.Receive<CollectedItemMessage>().Subscribe(message =>
-            {
-                if(message.Item == CollectedItem.Cherry)
-                    IncreaseCherryCount();
-                else if(message.Item == CollectedItem.Gem)
-                    IncreaseGemCount();
-            });
-        }
 
         public void IncreaseCherryCount()
         {

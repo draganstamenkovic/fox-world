@@ -37,7 +37,6 @@ namespace Gameplay
             _loadManager.Initialize();
             _inputManager.Initialize(_playerController);
             _levelManager.Initialize();
-            _scoreManager.Initialize();
             _backgroundManager.Initialize();
             SubscribeToEvents();
         }
