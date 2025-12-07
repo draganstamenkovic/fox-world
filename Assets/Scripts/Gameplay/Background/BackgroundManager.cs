@@ -14,13 +14,20 @@ namespace Gameplay.Background
         [SerializeField] private Transform skyTransform;
         private Vector3 _cameraPosition;
         private float _forrestYAxis;
+        private bool _initialized;
         private void Start()
         {
             _forrestYAxis = forrestTransform.position.y;
         }
 
+        public void Initialize()
+        {
+            _initialized = true;
+        }
+
         private void Update()
         {
+            if (!_initialized) return;
             _cameraPosition = _mainCamera.GetCameraPosition();
             _cameraPosition.z = 0f;
             skyTransform.position = _cameraPosition;

@@ -17,6 +17,7 @@ namespace Gameplay
     public class GameManager : IGameManager
     {
         [Inject] private readonly InputManager _inputManager;
+        [Inject] private readonly BackgroundManager _backgroundManager;
         [Inject] private readonly ICameraManager _cameraManager;
         [Inject] private readonly ILoadManager _loadManager;
         [Inject] private readonly IPlayerController _playerController;
@@ -37,6 +38,7 @@ namespace Gameplay
             _inputManager.Initialize(_playerController);
             _levelManager.Initialize();
             _scoreManager.Initialize();
+            _backgroundManager.Initialize();
             SubscribeToEvents();
         }
 

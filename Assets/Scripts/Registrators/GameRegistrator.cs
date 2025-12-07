@@ -16,6 +16,7 @@ namespace Registrators
             builder.Register<ICameraManager, CameraManager>(Lifetime.Singleton);
             builder.Register<IPlayerController, PlayerController>(Lifetime.Singleton);
             builder.Register<ILevelManager, LevelManager>(Lifetime.Singleton);
+            builder.Register<IScoreManager, ScoreManager>(Lifetime.Singleton);
             builder.RegisterComponentInHierarchy<BackgroundManager>();
         }
     }
