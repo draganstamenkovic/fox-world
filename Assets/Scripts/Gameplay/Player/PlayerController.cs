@@ -1,8 +1,10 @@
 using Audio.Managers;
 using Configs;
+using Gameplay.Collectables;
 using Gameplay.Enemies;
 using Message;
 using Message.Messages;
+using Unity.VisualScripting;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -93,6 +95,7 @@ namespace Gameplay.Player
             {
                 _playerView.OnUpdate = Update;
                 _playerView.OnCollisionEnter = OnCollisionEnter2D;
+                _playerView.OnTriggerEnter = OnTriggerEnter2D;
                 _playerView.rigidBody.bodyType = RigidbodyType2D.Dynamic;
             }
             else
@@ -104,7 +107,7 @@ namespace Gameplay.Player
                 _playerView.transform.localPosition = _startPosition;
             }
         }
-        
+
         private void CheckGrounded()
         {
             var wasGrounded = _isGrounded;
@@ -138,15 +141,17 @@ namespace Gameplay.Player
                 _playerView.rigidBody.gravityScale = _playerConfig.defaultGravity;
             }
         }
-
+        private void OnTriggerEnter2D(Collider2D collectableCollider)
+        {
+            if (collectableCollider.CompareTag(TagIds.Collectable))
+            {
+                var collectable = collectableCollider.gameObject.GetComponent<CollectableItem>();
+                _messageBroker.Publish(new CollectedItemMessage(collectable));
+            }
+        }
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.collider.CompareTag(TagIds.Collectable))
-            {
-                var collectable = collision.gameObject.GetComponent<CollectableItem>();
-                _messageBroker.Publish(new CollectedItemMessage(collectable.itemType));
-            }
-            else if (collision.collider.CompareTag(TagIds.Enemy))
+            if (collision.collider.CompareTag(TagIds.Enemy))
             {
 
                 var contact = collision.GetContact(0);

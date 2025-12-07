@@ -19,6 +19,7 @@ namespace Gameplay.Player
         
         public Action OnUpdate;
         public Action<Collision2D> OnCollisionEnter;
+        public Action<Collider2D> OnTriggerEnter;
 
         private void Update()
         {
@@ -28,6 +29,11 @@ namespace Gameplay.Player
         private void OnCollisionEnter2D(Collision2D collision)
         {
             OnCollisionEnter?.Invoke(collision);
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            OnTriggerEnter?.Invoke(other);
         }
     }
 }
