@@ -58,7 +58,7 @@ namespace Gameplay.Player
         {
             
             _isIdle = false;
-            _playerView.transform.localScale = xValue > 0 ? new  Vector3(1,1,1) : new Vector3(-1, 1, 1);
+            _playerView.transform.localScale = xValue >= 0 ? new  Vector3(1,1,1) : new Vector3(-1, 1, 1);
             
             var rb = _playerView.rigidBody;
             var v = rb.linearVelocity;
