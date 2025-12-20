@@ -1,14 +1,11 @@
 using Gameplay.Player;
-using Helpers.RuntimeInfo;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using VContainer;
 
 namespace Input
 {
     public class InputManager : MonoBehaviour
     {
-        [Inject] private readonly IRuntimeInformation _runtimeInformation;
         [SerializeField] private FixedJoystick joystick;
         [SerializeField] private UIButtonInput jumpButton;
         
@@ -41,7 +38,7 @@ namespace Input
         {
             if (value)
             {
-#if UNITY_Android || UNITY_IOS
+#if UNITY_ANDROID || UNITY_IOS
                 jumpButton.gameObject.SetActive(true);
                 joystick.gameObject.SetActive(true);
 #endif
@@ -50,8 +47,9 @@ namespace Input
             }
             else
             {
-#if UNITY_Android || UNITY_IOS
-                joystick.SetActive(false);
+#if UNITY_ANDROID || UNITY_IOS
+                joystick.gameObject.SetActive(false);
+                jumpButton.gameObject.SetActive(false);
 #endif
                 _jumpAction.started -= OnJumpStarted;
                 _jumpAction.canceled -= OnJumpCanceled;
@@ -86,27 +84,28 @@ namespace Input
             
 #if UNITY_ANDROID || UNITY_IOS
             _moveValue = joystick.Direction.x;
-#endif
+#elif UNITY_EDITOR || UNITY_STANDALONE   
             if(_moveAction.IsPressed())
                 _moveValue = _moveAction.ReadValue<Vector2>().x;
-            if(!_moveAction.IsPressed())
+            else
                 _playerController.Idle();
+#endif
         }
 
         private void FixedUpdate()
         {
-#if UNITY_ANDROID || UNITY_IOS
             if (!_isActive) return;
             
+#if UNITY_ANDROID || UNITY_IOS   
             if (_moveValue == 0)
                 _playerController.Idle();
             else
                 _playerController.Move(_moveValue);
-#endif      
             
+#elif UNITY_EDITOR || UNITY_STANDALONE    
             if(_moveAction.IsPressed())
                 _playerController.Move(_moveValue);
-
+#endif
             if (_jumpPressed && !_jumpConsumed)
             {
                 _playerController.Jump();
