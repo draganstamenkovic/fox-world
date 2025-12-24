@@ -1,10 +1,13 @@
+using System;
+using System.Collections;
+using Audio;
 using Audio.Managers;
 using Configs;
 using Gameplay.Collectables;
 using Gameplay.Enemies;
+using Gui.Popups;
 using Message;
 using Message.Messages;
-using Unity.VisualScripting;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -56,7 +59,6 @@ namespace Gameplay.Player
         }
         public void Move(float xValue)
         {
-            
             _isIdle = false;
             _playerView.transform.localScale = xValue >= 0 ? new  Vector3(1,1,1) : new Vector3(-1, 1, 1);
             
@@ -93,18 +95,20 @@ namespace Gameplay.Player
             _playerView.gameObject.SetActive(active);
             if (active)
             {
+                _playerView.animator.Play(AnimationIds.Idle);
                 _playerView.OnUpdate = Update;
                 _playerView.OnCollisionEnter = OnCollisionEnter2D;
                 _playerView.OnTriggerEnter = OnTriggerEnter2D;
                 _playerView.rigidBody.bodyType = RigidbodyType2D.Dynamic;
+                _playerView.transform.localPosition = _playerConfig.startPosition;
             }
             else
             {
                 _playerView.OnUpdate = null;
                 _playerView.OnCollisionEnter = null;
+                _playerView.OnTriggerEnter = null;
                 _playerView.rigidBody.bodyType = RigidbodyType2D.Kinematic;
                 _playerView.rigidBody.linearVelocity = Vector2.zero;
-                _playerView.transform.localPosition = _startPosition;
             }
         }
 
@@ -153,27 +157,38 @@ namespace Gameplay.Player
         {
             if (collision.collider.CompareTag(TagIds.Enemy))
             {
-
                 var contact = collision.GetContact(0);
                 var normal = contact.normal;
-
+                var enemy = collision.gameObject.GetComponent<Enemy>();
                 if (normal.y > _playerConfig.topHitThreshold)
                 {
-                    collision.gameObject.GetComponent<Enemy>().Die();
+                    enemy.Die();
 
                     _playerView.rigidBody.linearVelocity = new Vector2(_playerView.rigidBody.linearVelocity.x,
                         _playerConfig.jumpForceOnKill);
                 }
                 else
                 {
+                    enemy.SetColliderState(false);
                     Die();
                 }
             }
         }
 
-        private void Die()
+        private async void Die()
         {
-            _messageBroker.Publish(new GameOverMessage());
+            try
+            {
+                _messageBroker.Publish(new PlaySfxMessage(AudioIds.PlayerDied));
+                _playerView.animator.Play(AnimationIds.Dead);
+                await Awaitable.WaitForSecondsAsync(0.5f);
+                _messageBroker.Publish(new ShowPopupMessage(PopupIds.GameOverPopup));
+                _messageBroker.Publish(new GameOverMessage());
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e.Message);
+            }
         }
     }
 }

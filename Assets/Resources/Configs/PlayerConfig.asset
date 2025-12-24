@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 6261274542559814390, guid: 4daedd419dd9fcb40883b202ef5185ec, type: 3}
   onLandParticle: {fileID: 274031568669753798, guid: dc8f6fe0c82623e40844fc3c93449e96, type: 3}
+  startPosition: {x: -15, y: -3.9, z: 0}
   moveSpeed: 7.5
   jumpForce: 3000
   jumpForceOnKill: 20

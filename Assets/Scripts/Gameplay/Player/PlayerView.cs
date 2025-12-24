@@ -5,7 +5,6 @@ namespace Gameplay.Player
 {
     public class PlayerView : MonoBehaviour
     {
-        public SpriteRenderer spriteRenderer;
         public Rigidbody2D rigidBody;
         public Animator animator;
         public Transform dustParticleTransform;

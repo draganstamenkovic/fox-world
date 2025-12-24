@@ -1,5 +1,5 @@
-using Registrators;
 using Message;
+using Registrators;
 using VContainer;
 using VContainer.Unity;
 

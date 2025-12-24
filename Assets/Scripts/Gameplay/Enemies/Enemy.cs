@@ -1,5 +1,5 @@
-using UnityEngine;
 using DG.Tweening;
+using UnityEngine;
 
 namespace Gameplay.Enemies
 {
@@ -26,7 +26,12 @@ namespace Gameplay.Enemies
             enemyCollider.enabled = false;
             Destroy(gameObject, 0.5f);
         }
-        
+
+        public void SetColliderState(bool state)
+        {
+            enemyCollider.enabled = state;
+        }
+
         private void Move()
         {
             if (_stopMovement) return;

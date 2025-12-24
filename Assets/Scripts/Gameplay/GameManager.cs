@@ -50,15 +50,14 @@ namespace Gameplay
             _disposableMessages.Add(_messageBroker.Receive<PauseGameMessage>().Subscribe(message =>
             {
                 if (message.Paused)
-                {
                     Pause();
-                    _inputManager.SetActive(false);
-                }
                 else
-                {
                     Resume();
-                    _inputManager.SetActive(true);
-                }
+            }));
+            _disposableMessages.Add(_messageBroker.Receive<GameOverMessage>().Subscribe(message =>
+            {
+                Debug.Log("Game over!");
+                Stop();
             }));
         }
 
@@ -73,6 +72,7 @@ namespace Gameplay
         {
             _isPaused = true;
             Time.timeScale = 0f;
+            _inputManager.SetActive(false);
         }
 
         public void Resume()
@@ -81,6 +81,7 @@ namespace Gameplay
             
             _isPaused = false;
             Time.timeScale = 1f;
+            _inputManager.SetActive(true);
         }
 
         public void Stop()

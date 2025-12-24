@@ -18,3 +18,5 @@ MonoBehaviour:
   popups:
   - name: PauseMenuPopup
     popupPrefab: {fileID: 1954163226486929094, guid: 016461eb6271b5945bc2168507333282, type: 3}
+  - name: GameOverPopup
+    popupPrefab: {fileID: 6034871762922129616, guid: d0caebd52861c7c4ea5a8dac81c3a8ee, type: 3}

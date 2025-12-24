@@ -8,6 +8,7 @@ namespace Configs
         [Header("Player")]
         public GameObject playerPrefab;
         public GameObject onLandParticle;
+        public Vector3 startPosition;
         
         [Header("Movement Settings")]
         public float moveSpeed = 5f;

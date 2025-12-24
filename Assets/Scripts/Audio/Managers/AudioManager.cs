@@ -29,7 +29,7 @@ namespace Audio.Managers
             _sfxSource = sfxSourceObject.GetComponent<AudioSource>();
             
             _backgroundMusicSource.playOnAwake = false;
-            _backgroundMusicSource.volume = 0.35f;
+            _backgroundMusicSource.volume = 0.15f;
             _backgroundMusicSource.loop = true;
             _backgroundMusicSource.clip = _audioConfig.backgroundMusic;
             _backgroundMusicSource.Play();

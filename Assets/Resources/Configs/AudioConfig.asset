@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: AudioConfig
   m_EditorClassIdentifier: 
   backgroundMusic: {fileID: 8300000, guid: 0c2f5e196afe4644d9b1ffb8d644851d, type: 3}
-  sfxSounds: []
+  sfxSounds:
+  - id: PlayerDied
+    audioClip: {fileID: 8300000, guid: 1865a3ffbf1cd214cba2a4993d721148, type: 3}

@@ -1,7 +1,7 @@
 using System;
+using DG.Tweening;
 using Message.Messages;
 using UnityEngine;
-using DG.Tweening;
 
 namespace Gameplay.Collectables
 {

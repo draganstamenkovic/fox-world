@@ -1,7 +1,7 @@
-using TMPro;
-using UnityEngine.UI;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Gui.Screens.Views
 {
