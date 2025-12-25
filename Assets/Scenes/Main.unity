@@ -1138,7 +1138,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1220972938440720672, guid: e7d12292d6ec2144e9e4e9b25468dce7, type: 3}
       propertyPath: m_Name
-      value: UI_Screen_Loading
+      value: LoadingScreen
       objectReference: {fileID: 0}
     - target: {fileID: 1220972938440720672, guid: e7d12292d6ec2144e9e4e9b25468dce7, type: 3}
       propertyPath: m_IsActive
