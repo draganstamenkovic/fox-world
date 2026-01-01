@@ -320,27 +320,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2612630572052327240, guid: 09fab3ec440207647892477aee4a1251, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2612630572052327240, guid: 09fab3ec440207647892477aee4a1251, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2612630572052327240, guid: 09fab3ec440207647892477aee4a1251, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2612630572052327240, guid: 09fab3ec440207647892477aee4a1251, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2612630572052327240, guid: 09fab3ec440207647892477aee4a1251, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 600
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2612630572052327240, guid: 09fab3ec440207647892477aee4a1251, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 700
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2612630572052327240, guid: 09fab3ec440207647892477aee4a1251, type: 3}
       propertyPath: m_LocalPosition.x
@@ -418,6 +418,30 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7101697703047064421, guid: 09fab3ec440207647892477aee4a1251, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7101697703047064421, guid: 09fab3ec440207647892477aee4a1251, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7101697703047064421, guid: 09fab3ec440207647892477aee4a1251, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7101697703047064421, guid: 09fab3ec440207647892477aee4a1251, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7101697703047064421, guid: 09fab3ec440207647892477aee4a1251, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 7101697703047064421, guid: 09fab3ec440207647892477aee4a1251, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 700
+      objectReference: {fileID: 0}
     - target: {fileID: 8584149568503608922, guid: 09fab3ec440207647892477aee4a1251, type: 3}
       propertyPath: m_Name
       value: UI_Popup_GameOver
@@ -459,7 +483,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gui.Popups.Views.GameOverPopupView
   canvasGroup: {fileID: 3488743755034841762}
-  backgroundButton: {fileID: 5932376423380800491}
   restartButton: {fileID: 5519885956281255448}
   mainMenuButton: {fileID: 199670035836207564}
   quitButton: {fileID: 5427765374547365205}
@@ -471,17 +494,6 @@ CanvasGroup:
 --- !u!114 &5519885956281255448 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4259091628763686272, guid: 09fab3ec440207647892477aee4a1251, type: 3}
-  m_PrefabInstance: {fileID: 8611381997975331736}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5932376423380800491 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2726312337559564403, guid: 09fab3ec440207647892477aee4a1251, type: 3}
   m_PrefabInstance: {fileID: 8611381997975331736}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

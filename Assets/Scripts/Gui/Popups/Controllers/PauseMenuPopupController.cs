@@ -28,14 +28,12 @@ namespace Gui.Popups.Controllers
 
         private void RegisterListeners()
         {
-            _view.backgroundButton.onClick.AddListener(HidePopup);
             _view.continueButton.onClick.AddListener(OnContinueButtonClicked);
             _view.quitButton.onClick.AddListener(OnQuitButtonClicked);
         }
 
         private void RemoveListeners()
         {
-            _view.backgroundButton.onClick.RemoveListener(HidePopup);
             _view.continueButton.onClick.RemoveListener(OnContinueButtonClicked);
             _view.quitButton.onClick.RemoveListener(OnQuitButtonClicked);
         }
@@ -48,11 +46,6 @@ namespace Gui.Popups.Controllers
         private void OnContinueButtonClicked()
         {
             _messageBroker.Publish(new PauseGameMessage(false));
-            HidePopup();
-        }
-
-        private void HidePopup()
-        {
             _popupManager.HidePopup(ID);
         }
     }

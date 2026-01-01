@@ -27,7 +27,6 @@ namespace Gui.Popups.Controllers
         }
         private void RegisterListeners()
         {
-            _view.backgroundButton.onClick.AddListener(HidePopup);
             _view.restartButton.onClick.AddListener(OnRestartButtonClicked);
             _view.mainMenuButton.onClick.AddListener(OnMainMenuButtonClicked);
             _view.quitButton.onClick.AddListener(OnQuitButtonClicked);
@@ -35,7 +34,6 @@ namespace Gui.Popups.Controllers
 
         private void RemoveListeners()
         {
-            _view.backgroundButton.onClick.RemoveListener(HidePopup);
             _view.restartButton.onClick.RemoveListener(OnRestartButtonClicked);
             _view.mainMenuButton.onClick.RemoveListener(OnMainMenuButtonClicked);
             _view.quitButton.onClick.RemoveListener(OnQuitButtonClicked);
@@ -55,11 +53,6 @@ namespace Gui.Popups.Controllers
         private void OnRestartButtonClicked()
         {
             Debug.Log("Restart");
-        }
-
-        private void HidePopup()
-        {
-            _popupManager.HidePopup(ID);
         }
     }
 }

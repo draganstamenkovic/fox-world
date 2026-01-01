@@ -23,12 +23,10 @@ namespace Gui.Popups.Controllers
 
         private void RemoveListeners()
         {
-            _view.backgroundButton.onClick.RemoveListener(HidePopup);
         }
 
         private void RegisterListeners()
         {
-            _view.backgroundButton.onClick.AddListener(HidePopup);
         }
 
         private void HidePopup()

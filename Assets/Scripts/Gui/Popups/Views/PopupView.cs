@@ -13,7 +13,6 @@ namespace Gui.Popups.Views
         [Inject] private PopupsConfig _popupsConfig;
         
         public CanvasGroup canvasGroup;
-        public Button backgroundButton;
         public string ID { get; set; }
         public Action OnShow { get; set; }
         public Action OnShown { get; set; }
