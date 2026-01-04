@@ -76,7 +76,7 @@ namespace Gameplay
             }));
             _disposableMessages.Add(_messageBroker.Receive<GameOverMessage>().Subscribe(message =>
             {
-                _inputManager.SetActive(false);
+                Stop();
             }));
         }
 
@@ -112,6 +112,7 @@ namespace Gameplay
                 Time.timeScale = 1f;
                 _isPaused = false;
             }
+            _inputManager.SetActive(false);
             _levelManager.DestroyActiveLevel();
             _playerController.SetActive(false);
         }

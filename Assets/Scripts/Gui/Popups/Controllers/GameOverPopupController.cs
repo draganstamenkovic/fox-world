@@ -46,6 +46,7 @@ namespace Gui.Popups.Controllers
 
         private void OnMainMenuButtonClicked()
         {
+            _messageBroker.Publish(new GameOverMessage());
             _popupManager.HidePopup(ID);
             _messageBroker.Publish(new ShowScreenMessage(GuiScreenIds.MainMenuScreen));
         }

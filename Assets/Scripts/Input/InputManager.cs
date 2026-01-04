@@ -1,6 +1,10 @@
 using Gameplay.Player;
+using Message;
+using Message.Messages;
+using R3;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using VContainer;
 
 namespace Input
 {
@@ -8,6 +12,7 @@ namespace Input
     {
         [SerializeField] private FixedJoystick joystick;
         [SerializeField] private UIButtonInput jumpButton;
+        [Inject] private IMessageBroker _messageBroker;
         
         private IPlayerController _playerController;
         
@@ -32,6 +37,7 @@ namespace Input
             _jumpAction = InputSystem.actions.FindAction("Jump");
             jumpButton.OnPressed += UIJumpStarted;
             jumpButton.OnReleased += UIJumpCanceled;
+            _messageBroker.Receive<DisableInputMessage>().Subscribe(message => SetActive(false));
         }
 
         public void SetActive(bool value)

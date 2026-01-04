@@ -54,5 +54,11 @@ namespace Gameplay.Enemies
                         });
                 });
         }
+        
+        private void OnDestroy()
+        {
+            if (enemyTransform != null)
+                enemyTransform.DOKill();
+        }
     }
 }

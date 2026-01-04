@@ -25,7 +25,6 @@ namespace Cameras
 
         public void SetCinemachineConfiner(BoxCollider2D confinerCollider)
         {
-            Debug.LogError(confinerCollider.gameObject.name);
             _cinemachineConfiner.BoundingShape2D = confinerCollider;
         }
 

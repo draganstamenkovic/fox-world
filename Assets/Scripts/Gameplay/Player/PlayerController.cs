@@ -1,6 +1,4 @@
-using System;
 using Audio;
-using Audio.Managers;
 using Configs;
 using Gameplay.Collectables;
 using Gameplay.Enemies;
@@ -16,7 +14,6 @@ namespace Gameplay.Player
     public class PlayerController : IPlayerController
     {
         [Inject] private PlayerConfig _playerConfig;
-        [Inject] private IAudioManager _audioManager;
         [Inject] private IMessageBroker _messageBroker;
         private readonly IObjectResolver _objectResolver;
 
@@ -102,13 +99,16 @@ namespace Gameplay.Player
                 _playerView.transform.localPosition = _playerConfig.startPosition;
             }
             else
-            {
-                _playerView.OnUpdate = null;
-                _playerView.OnCollisionEnter = null;
-                _playerView.OnTriggerEnter = null;
-                _playerView.rigidBody.bodyType = RigidbodyType2D.Kinematic;
-                _playerView.rigidBody.linearVelocity = Vector2.zero;
-            }
+                FreezePlayer();
+        }
+
+        private void FreezePlayer()
+        {
+            _playerView.OnUpdate = null;
+            _playerView.OnCollisionEnter = null;
+            _playerView.OnTriggerEnter = null;
+            _playerView.rigidBody.bodyType = RigidbodyType2D.Kinematic;
+            _playerView.rigidBody.linearVelocity = Vector2.zero;
         }
 
         private void CheckGrounded()
@@ -183,10 +183,10 @@ namespace Gameplay.Player
         }
 
         private void Die()
-        {
-            _messageBroker.Publish(new PlaySfxMessage(AudioIds.PlayerDied));
-            _messageBroker.Publish(new GameOverMessage());
+        { 
             _playerView.animator.Play(AnimationIds.Dead);
+            _messageBroker.Publish(new PlaySfxMessage(AudioIds.PlayerDied));
+            _messageBroker.Publish(new DisableInputMessage());
             _playerView.ShrinkPlayer(() =>
             {
                 _messageBroker.Publish(new ShowPopupMessage(PopupIds.GameOverPopup));
