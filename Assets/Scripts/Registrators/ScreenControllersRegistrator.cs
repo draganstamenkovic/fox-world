@@ -11,6 +11,7 @@ namespace Registrators
             builder.Register<MainMenuScreenController>(Lifetime.Singleton).As<IScreenController>();
             builder.Register<PlayScreenController>(Lifetime.Singleton).As<IScreenController>();
             builder.Register<SettingsScreenController>(Lifetime.Singleton).As<IScreenController>();
+            builder.Register<LevelSelectScreenController>(Lifetime.Singleton).As<IScreenController>();
         }
     }
 }

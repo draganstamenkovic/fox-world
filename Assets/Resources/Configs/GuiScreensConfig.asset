@@ -25,3 +25,5 @@ MonoBehaviour:
     Screen: {fileID: 3185332468236236503, guid: 88fd35f324af95840926a17e64153fb3, type: 3}
   - Name: SettingsScreen
     Screen: {fileID: 4445446548013345449, guid: 01af05cce48709448809be1340bce41b, type: 3}
+  - Name: LevelSelectScreen
+    Screen: {fileID: 2636806955557919989, guid: e67edc09bc7492d47a538aee70b73bee, type: 3}
