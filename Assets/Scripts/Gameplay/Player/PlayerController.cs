@@ -99,16 +99,13 @@ namespace Gameplay.Player
                 _playerView.transform.localPosition = _playerConfig.startPosition;
             }
             else
-                FreezePlayer();
-        }
-
-        private void FreezePlayer()
-        {
-            _playerView.OnUpdate = null;
-            _playerView.OnCollisionEnter = null;
-            _playerView.OnTriggerEnter = null;
-            _playerView.rigidBody.bodyType = RigidbodyType2D.Kinematic;
-            _playerView.rigidBody.linearVelocity = Vector2.zero;
+            {
+                _playerView.OnUpdate = null;
+                _playerView.OnCollisionEnter = null;
+                _playerView.OnTriggerEnter = null;
+                _playerView.rigidBody.bodyType = RigidbodyType2D.Kinematic;
+                _playerView.rigidBody.linearVelocity = Vector2.zero;
+            }
         }
 
         private void CheckGrounded()

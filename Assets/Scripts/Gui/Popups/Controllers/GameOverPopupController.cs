@@ -53,7 +53,12 @@ namespace Gui.Popups.Controllers
 
         private void OnRestartButtonClicked()
         {
-            Debug.Log("Restart");
+            Debug.Log("Restart button clicked");
+            _popupManager.HidePopup(ID);
+            _messageBroker.Publish(new LoadingMessage("Loading...", true));
+            _messageBroker.Publish(new GameOverMessage());
+            _messageBroker.Publish(new PlayGameMessage());
+            _messageBroker.Publish(new LoadingMessage("Loading...", false));
         }
     }
 }
