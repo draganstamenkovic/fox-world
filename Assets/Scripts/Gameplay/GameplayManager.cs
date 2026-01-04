@@ -80,11 +80,13 @@ namespace Gameplay
             }));
         }
 
-        public void Play()
+        public async void Play()
         {
+            await _levelManager.LoadLevel();
             _playerController.SetActive(true);
             _inputManager.SetActive(true);
             _cameraManager.FollowPlayer(_playerController.GetTransform());
+            _cameraManager.SetCinemachineConfiner(_levelManager.GetLevelCollider());
         }
 
         public void Pause()
@@ -110,9 +112,8 @@ namespace Gameplay
                 Time.timeScale = 1f;
                 _isPaused = false;
             }
-            
+            _levelManager.DestroyActiveLevel();
             _playerController.SetActive(false);
-            _inputManager.SetActive(false);
         }
 
         public void Restart()

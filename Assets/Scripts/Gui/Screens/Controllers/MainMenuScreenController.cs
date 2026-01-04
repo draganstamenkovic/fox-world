@@ -1,5 +1,4 @@
 using Data.Save;
-using Gui.Popups;
 using Gui.Screens.Views;
 using UnityEngine;
 using VContainer;
@@ -45,7 +44,7 @@ namespace Gui.Screens.Controllers
 
         private void OnPlayButtonClick()
         {
-            _screenManager.ShowScreen(GuiScreenIds.PlayScreen);
+            _screenManager.ShowScreen(GuiScreenIds.LevelSelectScreen);
         }
 
         private void RemoveListeners()
