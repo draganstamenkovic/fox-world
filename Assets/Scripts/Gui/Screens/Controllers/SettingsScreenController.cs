@@ -25,7 +25,7 @@ namespace Gui.Screens.Controllers
             _view.OnShow = () =>
             {
                 _view.musicToggle.isOn = !_audioManager.BackgroundMusicSource().mute;
-                _view.soundToggle.isOn = !_audioManager.SfxSource().mute!;
+                _view.soundToggle.isOn = !_audioManager.SfxSource().mute;
                 RegisterListeners();
             };
             _view.OnHidden = RemoveListeners;
