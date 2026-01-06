@@ -23,6 +23,7 @@ namespace Gameplay.Background
         public void Initialize()
         {
             _initialized = true;
+            gameObject.SetActive(true);
         }
 
         private void Update()
