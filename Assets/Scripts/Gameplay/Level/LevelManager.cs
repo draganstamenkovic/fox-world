@@ -3,7 +3,6 @@ using Configs;
 using Message;
 using Message.Messages;
 using R3;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -38,21 +37,29 @@ namespace Gameplay.Level
                 return;
             }
             _levelAssetReference = levelAssetReference.LoadAssetAsync();
-            var levelPrefab = await _levelAssetReference.Task;
-            _activeLevel = Object.Instantiate(levelPrefab);
-            _levelCollider = _activeLevel.GetComponent<BoxCollider2D>();
-            levelAssetReference.ReleaseAsset();
-        }
-
-        public void LoadNextLevel()
-        {
+            await _levelAssetReference.Task;
             
+            if (_levelAssetReference.Status != AsyncOperationStatus.Succeeded)
+            {
+                Debug.LogError("Failed to load level prefab");
+                return;
+            }
+            _activeLevel = Object.Instantiate(_levelAssetReference.Result);
+            _levelCollider = _activeLevel.GetComponent<BoxCollider2D>();
         }
 
         public void DestroyActiveLevel()
         {
-            Object.Destroy(_activeLevel);
-           // Addressables.Release(_levelAssetReference);
+            if (_activeLevel != null)
+            {
+                Object.Destroy(_activeLevel);
+                _activeLevel = null;
+            }
+
+            if (_levelAssetReference.IsValid())
+            {
+                Addressables.Release(_levelAssetReference);
+            }
         }
 
         public BoxCollider2D GetLevelCollider()
