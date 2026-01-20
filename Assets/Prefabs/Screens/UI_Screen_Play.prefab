@@ -527,11 +527,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96ecb5d41a5df2549affd524d25c3f8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gui.Screens.Views.PlayScreenView
+  screenRectTransform: {fileID: 3185332468236236503}
   pauseButton: {fileID: 7976357028500371269}
   gemsCountText: {fileID: 1083420311387759255}
   cherriesCountText: {fileID: 4826906803279579179}
   gemsRectTransform: {fileID: 2926042356059000678}
   cherriesRectTransform: {fileID: 3528130595501189925}
+--- !u!224 &3185332468236236503 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8565244916123805903, guid: 0082e3865967e52449321de3884075c9, type: 3}
+  m_PrefabInstance: {fileID: 6550854948081016344}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &5678946982124477840 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1452098545857643400, guid: 0082e3865967e52449321de3884075c9, type: 3}
