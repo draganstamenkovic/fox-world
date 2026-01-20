@@ -44,7 +44,7 @@ namespace Input
         {
             if (value)
             {
-#if UNITY_ANDROID || UNITY_IOS
+#if ANDROID || IOS
                 jumpButton.gameObject.SetActive(true);
                 joystick.gameObject.SetActive(true);
                 joystick.handle.anchoredPosition = Vector2.zero;
@@ -55,7 +55,7 @@ namespace Input
             }
             else
             {
-#if UNITY_ANDROID || UNITY_IOS
+#if ANDROID || IOS
                 joystick.gameObject.SetActive(false);
                 jumpButton.gameObject.SetActive(false);
 #endif
@@ -90,9 +90,9 @@ namespace Input
         {
             if (!_isActive) return;
             
-#if UNITY_ANDROID || UNITY_IOS
+#if ANDROID || IOS
             _moveValue = joystick.Direction.x;
-#elif UNITY_EDITOR || UNITY_STANDALONE   
+#elif UNITY_EDITOR || UNITY_STANDALONE || UNITY_WEBGL   
             if(_moveAction.IsPressed())
                 _moveValue = _moveAction.ReadValue<Vector2>().x;
             else
@@ -104,13 +104,13 @@ namespace Input
         {
             if (!_isActive) return;
             
-#if UNITY_ANDROID || UNITY_IOS   
+#if ANDROID || IOS   
             if (_moveValue == 0)
                 _playerController.Idle();
             else
                 _playerController.Move(_moveValue);
             
-#elif UNITY_EDITOR || UNITY_STANDALONE    
+#elif UNITY_EDITOR || UNITY_STANDALONE || UNITY_WEBGL
             if(_moveAction.IsPressed())
                 _playerController.Move(_moveValue);
 #endif
