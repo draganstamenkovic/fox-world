@@ -22,5 +22,6 @@ public class Bootstrap : IStartable
     private void Prepare()
     {
         Application.targetFrameRate = 60;
+        
     }
 }
