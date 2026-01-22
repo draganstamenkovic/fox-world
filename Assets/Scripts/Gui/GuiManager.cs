@@ -24,7 +24,7 @@ namespace Gui
             _screenManager.Initialize(screensContainer, screenBlocker);
             _popupManager.Initialize(popupsContainer, screenBlocker);
 
-#if UNITY_WEBGL
+#if UNITY_WEBGL && !UNITY_EDITOR
             fullScreen.gameObject.SetActive(true);
             fullScreenButton.onClick.AddListener(OnFullScreenButtonClick);
 #endif
